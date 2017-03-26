@@ -1,5 +1,11 @@
 #best_before_warning {
+    position: sticky;
+    width:100%;
+    top:0;
     padding: 2rem;
     color: white;
     background-color: #D46a6a;
+    text-align: center;
+    font-size: 2rem;
+    z-index: 90000;
 }
