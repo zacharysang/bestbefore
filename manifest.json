@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "bestbefore"
+  ,"description": "This extension will warn the user if a page is older than a certain age"
+  ,"version": "1.0"
+  ,"permissions": [
+    "activeTab"
+  ]
+  ,"content_scripts":[
+    {
+        "matches": ["http://*/*","https://*/*"]
+        ,"css": ["warning.css"]
+        ,"js": ["main.js"]
+    }
+  ]
+}
