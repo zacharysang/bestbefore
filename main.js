@@ -12,8 +12,20 @@ function oldAge(){
 }
 
 function pageAge(){
-    var age = 0;
-    var dateRegEx = /[0-9]{,4}[\/\.\-][0-9]{,4}[\/\.\-][0-9]{,4}/;
-    if(document.baseURI.match(/[0-9]/))
-    return 2;
+    var today = new Date();
+    var lastAuthored = new Date();
+    var yyyymm = /([0-9]{,4})[\/\.\-]([0-9]{,2})/;
+    var mmyyyy = /([0-9]{,2})[\/\.\-]([0-9]{,4})/;
+        
+    var yyyymmRes = yyyymmdd.exec(document.baseURI);
+    var mmyyyyRes = mmyyyy.exec(document.baseURI);
+    if(yyyymmRes.length > 1){
+       lastAuthored.setYear(yyyymmRes[1]);
+       lastAuthored.setMonth(yyyymmRes[2]);
+    }else if(mmyyyyRes.length > 1){
+       lastAuthored.setMonth(yyyymmRes[1]);
+       lastAuthored.setYear(yyyymmRes[2]);
+    }
+    
+    return 12*(today.getYear()-lastAuthored.getYear()) + (today.getMonth() - lastAuthored.getMonth());
 }
