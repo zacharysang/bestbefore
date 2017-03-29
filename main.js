@@ -1,4 +1,4 @@
-if(true){
+if(pageAge() > oldAge()){
     var warning = document.createElement("div");
     var warningText = document.createTextNode("This page might be old");
     warning.appendChild(warningText);
@@ -14,9 +14,15 @@ function oldAge(){
 function pageAge(){
     var today = new Date();
     var lastAuthored = new Date();
-    var yyyymm = /([0-9]{,4})[\/\.\-]([0-9]{,2})/;
-    var mmyyyy = /([0-9]{,2})[\/\.\-]([0-9]{,4})/;
-        
+    var yyyymm = /(([12]{1}[8901]{1})?[0-9]{2})[\.\-\/]{0,1}([01]{1}[0-9]{1})/;
+    var mmyyyy = /([01]{1}[0-9]{1})[\.\-\/]{0,1}(([12]{1}[8901]{1})?[0-9]{2})/;
+
+    //check for 'time' tag
+
+
+    //check for other elements
+    
+    //check URL for hints of last publish date
     var yyyymmRes = yyyymmdd.exec(document.baseURI);
     var mmyyyyRes = mmyyyy.exec(document.baseURI);
     if(yyyymmRes.length > 1){
@@ -27,5 +33,7 @@ function pageAge(){
        lastAuthored.setYear(yyyymmRes[2]);
     }
     
-    return 12*(today.getYear()-lastAuthored.getYear()) + (today.getMonth() - lastAuthored.getMonth());
+    var age = 12*(today.getYear()-lastAuthored.getYear()) + (today.getMonth() - lastAuthored.getMonth());
+    console.log("Page age: " + age);
+    return age;
 }
