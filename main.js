@@ -19,8 +19,9 @@ function pageAge(){
 
     //check for 'time' tag
 
+    //check meta tags for property containing 'date'
 
-    //check for other elements
+    //check other elements on page for hints
     
     //check URL for hints of last publish date
     var yyyymmRes = yyyymmdd.exec(document.baseURI);
