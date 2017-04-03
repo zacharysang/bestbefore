@@ -24,14 +24,11 @@ function saveOptions(e) {
   }
 
   document.body.appendChild(statusEl);
-
-
-
 }
 
 function restoreOptions() {
-    var configAge = localStorage.getItem("oldAge");
-    document.querySelector("#oldAge").value = configAge || "12";
+    var configAge = localStorage.getItem("oldAge") || "12";
+    document.querySelector("#oldAge").value = configAge;
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
