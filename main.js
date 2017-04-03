@@ -10,7 +10,9 @@ if(pageAge().asMonths() > oldAge().asMonths()){
 }
 
 function oldAge(){
-    return moment.duration(12,'months');
+    var oldAge = localStorage.getItem("oldAge") || 12;
+    console.log(`config age: ${oldAge}`);
+    return moment.duration(oldAge,'months');
 }
 
 function pageAge(){
@@ -21,7 +23,7 @@ function pageAge(){
 
     //check for 'time' tag
     var timeEl = document.getElementsByTagName("time");
-    if(timeEl){
+    if(timeEl.length > 0){
         lastAuthored = moment(timeEl[0].innerHTML);
         console.log("time tag found");
     }else{
@@ -32,6 +34,11 @@ function pageAge(){
     /*var metaEl = document.querySelectorAll("");*/
 
     //check other elements on page for hints
+    /*
+    check following attributes:
+        * last-updated
+        * 
+     */
     
     //check URL for hints of last publish date
     var yyyymmRes = yyyymm.exec(document.baseURI);
@@ -45,6 +52,6 @@ function pageAge(){
     }
     
     var age = moment.duration(today.diff(lastAuthored));
-    console.log("Page age: " + age.asMonths());
+    //console.log("Page age: " + age.asMonths());
     return age;
 }

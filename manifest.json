@@ -6,6 +6,7 @@
   ,"version": "1.0"
   ,"permissions": [
     "activeTab"
+    ,"storage"
   ]
   ,"content_scripts":[
     {
@@ -14,4 +15,7 @@
         ,"js": ["moment.min.js","main.js"]
     }
   ]
+  ,"options_ui":{
+      "page": "options.html"
+      }
 }
