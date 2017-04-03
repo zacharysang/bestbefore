@@ -1,18 +1,23 @@
 if(pageAge().asMonths() > oldAge().asMonths()){
 
     console.log(`page age: ${pageAge().asMonths()}, oldAge: ${oldAge().asMonths()}`)
-    var warning = document.createElement("div");
-    var warningText = document.createTextNode("This page might be old");
+    var warning = document.createElement('div');
+    var warningText = document.createTextNode('This page might be old');
     warning.appendChild(warningText);
-    warning.setAttribute("id","best_before_warning");
-    warning.setAttribute("z-index","200");
+    warning.setAttribute('id','best_before_warning');
+    warning.setAttribute('z-index','200');
     document.body.insertBefore(warning, document.body.firstChild);
 }
 
 function oldAge(){
-    var oldAge = localStorage.getItem("oldAge") || 12;
+    if(localStorage){
+    var oldAge = localStorage.getItem('oldAge') || 12;
     console.log(`config age: ${oldAge}`);
     return moment.duration(oldAge,'months');
+    } else {
+    console.log('Could not access local storage');
+    return moment.duration(12,'months');
+    }
 }
 
 function pageAge(){
@@ -22,12 +27,12 @@ function pageAge(){
     var mmyyyy = /([01]{1}[0-9]{1})[\.\-\/]{0,1}(([12]{1}[8901]{1})?[0-9]{2})/;
 
     //check for 'time' tag
-    var timeEl = document.getElementsByTagName("time");
+    var timeEl = document.getElementsByTagName('time');
     if(timeEl.length > 0){
         lastAuthored = moment(timeEl[0].innerHTML);
-        console.log("time tag found");
+        console.log('time tag found');
     }else{
-        console.log("No time tag found");
+        console.log('No time tag found');
     }
 
     //check meta tags for property containing 'date'
