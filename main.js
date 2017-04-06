@@ -1,18 +1,23 @@
-if(pageAge().asMonths() > oldAge().asMonths()){
+chrome.storage.sync.get('oldAge',function(result){
+    console.log(`result from config: ${JSON.stringify(result)}`)
+    if(result.oldAge){
+        var configAge = result.oldAge || 12;
+        console.log(`configAge: ${configAge}`);
+        var oldAge = moment.duration(parseInt(configAge),'months');
+        console.log(`oldAge: ${oldAge.asMonths()}, pageAge: ${pageAge().asMonths()}`);
+        if(pageAge() > oldAge){
+            displayWarning();
+        }
+    }
+});
 
-    console.log(`page age: ${pageAge().asMonths()}, oldAge: ${oldAge().asMonths()}`)
+function displayWarning(){
     var warning = document.createElement("div");
     var warningText = document.createTextNode("This page might be old");
     warning.appendChild(warningText);
     warning.setAttribute("id","best_before_warning");
     warning.setAttribute("z-index","200");
     document.body.insertBefore(warning, document.body.firstChild);
-}
-
-function oldAge(){
-    var oldAge = localStorage.getItem("oldAge") || 12;
-    console.log(`config age: ${oldAge}`);
-    return moment.duration(oldAge,'months');
 }
 
 function pageAge(){
