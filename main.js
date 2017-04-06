@@ -15,10 +15,11 @@ function displayWarning(){
     var warning = document.createElement("div");
     var warningText = document.createTextNode("This page might be old");
     warning.appendChild(warningText);
-    warning.setAttribute("id","best_before_warning");
-    warning.setAttribute("z-index","200");
+    warning.setAttribute('id','best_before_warning');
+    warning.setAttribute('z-index','200');
     document.body.insertBefore(warning, document.body.firstChild);
 }
+
 
 function pageAge(){
     var today = moment();
@@ -27,12 +28,12 @@ function pageAge(){
     var mmyyyy = /([01]{1}[0-9]{1})[\.\-\/]{0,1}(([12]{1}[8901]{1})?[0-9]{2})/;
 
     //check for 'time' tag
-    var timeEl = document.getElementsByTagName("time");
+    var timeEl = document.getElementsByTagName('time');
     if(timeEl.length > 0){
         lastAuthored = moment(timeEl[0].innerHTML);
-        console.log("time tag found");
+        console.log('time tag found');
     }else{
-        console.log("No time tag found");
+        console.log('No time tag found');
     }
 
     //check meta tags for property containing 'date'
