@@ -1,40 +1,40 @@
 function saveOptions(e) {
   e.preventDefault();
 
-  var statusEl = document.createElement("div");
-  document.body.appendChild(statusEl);
+  var statusEl = document.querySelector("#status");
 
   chrome.storage.sync.set({
       oldAge:document.querySelector('#oldAge').value
     },function(){
-          statusEl.setAttribute("style",`
-          background-color: #81D274;
-          padding: 0.5rem;
-          margin: 0.5rem;
-          `);
-          statusEl.innerText = "Saved";        
+        displaySucc(statusEl);
   });
-
+  
 }
 
 function restoreOptions() {
-    var statusEl = document.createElement('div');
+    var statusEl = document.querySelector('#status');
  
     chrome.storage.sync.get('oldAge',function(res){
-            document.querySelector('#oldAge').value = res.oldAge;
+        if(!runtime.lastErr){
+          document.querySelector('#oldAge').value = res.oldAge;
+          displaySucc(statusEl);
+        } else {
+          displayFail(statusEl);
+        }
     });
 
 }
 
-function setErr(err,el){
-    /*statusEl.setAttribute("style",`
-        background-color: #D75353;
-        padding: 0.5rem;
-        margin: 0.5rem;
-          `);
-    */
-    statusEl.innerText = err;
-    document.body.appendChild(statusEl);
+function displaySucc(el){
+   el.style.backgroundColor = '#81D274';
+   el.style.display = 'true';
+   el.innerText = "Saved";   
+}
+
+function displayFail(el){
+  el.style.backgroundColor = '#D75353';
+  el.style.display = 'true';
+  el.innerText = 'saved';
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
