@@ -1,10 +1,7 @@
 chrome.storage.sync.get('oldAge',function(result){
-    console.log(`result from config: ${JSON.stringify(result)}`)
     if(result.oldAge){
         var configAge = result.oldAge || 12;
-        console.log(`configAge: ${configAge}`);
         var oldAge = moment.duration(parseInt(configAge),'months');
-        console.log(`oldAge: ${oldAge.asMonths()}, pageAge: ${pageAge().asMonths()}`);
         if(pageAge() > oldAge){
             displayWarning();
         }
@@ -31,9 +28,7 @@ function pageAge(){
     var timeEl = document.getElementsByTagName('time');
     if(timeEl.length > 0){
         lastAuthored = moment(timeEl[0].innerHTML);
-        console.log('time tag found');
     }else{
-        console.log('No time tag found');
     }
 
     //check meta tags for property containing 'date'
