@@ -19,4 +19,5 @@
       "page": "options.html"
       ,"chrome_style": true
       }
+  ,"content_security_policy":"default-src 'self'"
 }

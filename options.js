@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", restoreOptions);
+document.querySelector("#save").addEventListener("click", saveOptions);
+
 function saveOptions(e) {
   e.preventDefault();
 
@@ -36,6 +39,3 @@ function displayFail(el){
   el.style.display = 'true';
   el.innerText = 'Saving failed';
 }
-
-document.addEventListener("DOMContentLoaded", restoreOptions);
-document.querySelector("#save").addEventListener("click", saveOptions);

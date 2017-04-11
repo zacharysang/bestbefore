@@ -1,19 +1,22 @@
-chrome.storage.sync.get('oldAge',function(result){
-    if(result.oldAge){
+document.addEventListener("DOMContentLoaded", function(){
+    documchrome.storage.sync.get('oldAge',function(result){
         var configAge = result.oldAge || 12;
         var oldAge = moment.duration(parseInt(configAge),'months');
         if(pageAge() > oldAge){
             displayWarning();
         }
-    }
+    });
 });
+
 
 function displayWarning(){
     var warning = document.createElement("div");
-    var warningText = document.createTextNode("This page might be old");
-    warning.appendChild(warningText);
     warning.setAttribute('id','best_before_warning');
     warning.setAttribute('z-index','200');
+    var warningText = document.createTextNode("This page might be old");
+    warning.appendChild(warningText);
+    
+    //check if shadow dom available, and if so, put it there
     document.body.insertBefore(warning, document.body.firstChild);
 }
 
