@@ -20,7 +20,7 @@ function displayWarning(){
 
 function pageAge(){
     var today = moment();
-    var lastAuthored = moment();
+    var lastAuthored = today;
     var yyyymm = /(([12]{1}[8901]{1})?[0-9]{2})[\.\-\/]{0,1}([01]{1}[0-9]{1})/;
     var mmyyyy = /([01]{1}[0-9]{1})[\.\-\/]{0,1}(([12]{1}[8901]{1})?[0-9]{2})/;
 
@@ -53,6 +53,8 @@ function pageAge(){
     }
     
     var age = moment.duration(today.diff(lastAuthored));
-    //console.log("Page age: " + age.asMonths());
+    
+    console.assert(lastAuthored != today, "Authored date could not be found");
+
     return age;
 }

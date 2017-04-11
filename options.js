@@ -34,7 +34,7 @@ function displaySucc(el){
 function displayFail(el){
   el.style.backgroundColor = '#D75353';
   el.style.display = 'true';
-  el.innerText = 'saved';
+  el.innerText = 'Saving failed';
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
