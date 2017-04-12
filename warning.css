@@ -2,10 +2,15 @@
     position: sticky;
     width:100%;
     top:0;
-    padding: 2rem;
+    padding: 2.5rem;
     color: white;
     background-color: #D46a6a;
     text-align: center;
     font-size: 2rem;
     z-index: 90000;
+}
+
+.best_before_hidden {
+    transform: translate(-100%);
+    transition: 0.4s;
 }

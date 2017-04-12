@@ -1,11 +1,9 @@
-document.addEventListener("DOMContentLoaded", function(){
-    documchrome.storage.sync.get('oldAge',function(result){
+chrome.storage.sync.get('oldAge',function(result){
         var configAge = result.oldAge || 12;
         var oldAge = moment.duration(parseInt(configAge),'months');
         if(pageAge() > oldAge){
             displayWarning();
         }
-    });
 });
 
 
@@ -15,8 +13,17 @@ function displayWarning(){
     warning.setAttribute('z-index','200');
     var warningText = document.createTextNode("This page might be old");
     warning.appendChild(warningText);
+
+    warning.addEventListener('click',function(ev){
+        
+        ev.target.addEventListener('transitionend', function(){
+            ev.target.style.display = 'none';
+        });
+        ev.target.setAttribute('class','best_before_hidden');
+    })
     
     //check if shadow dom available, and if so, put it there
+
     document.body.insertBefore(warning, document.body.firstChild);
 }
 
