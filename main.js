@@ -38,7 +38,6 @@ function pageAge(){
     var timeEl = document.getElementsByTagName('time');
     if(timeEl.length > 0){
         lastAuthored = moment(timeEl[0].innerHTML);
-    }else{
     }
 
     //check meta tags for property containing 'date'
@@ -52,7 +51,7 @@ function pageAge(){
      */
     
     //check URL for hints of last publish date
-    var yyyymmRes = yyyymm.exec(document.baseURI);
+    /*var yyyymmRes = yyyymm.exec(document.baseURI);
     var mmyyyyRes = mmyyyy.exec(document.baseURI);
     if(yyyymmRes && yyyymmRes.length > 1){
        lastAuthored.setYear(yyyymmRes[1]);
@@ -61,7 +60,7 @@ function pageAge(){
        lastAuthored.setMonth(yyyymmRes[1]);
        lastAuthored.setYear(yyyymmRes[2]);
     }
-    
+    */
     var age = moment.duration(today.diff(lastAuthored));
     
     console.assert(lastAuthored != today, "Authored date could not be found");
