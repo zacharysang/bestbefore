@@ -8,6 +8,17 @@
     text-align: center;
     font-size: 2rem;
     z-index: 90000;
+    cursor: default;
+}
+
+#best_before_warning:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+    }
+
+#best_before_warning:not(hover) {
+    opacity: 1;
+    transition: 0.25s;
 }
 
 .best_before_hidden {
