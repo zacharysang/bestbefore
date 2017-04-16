@@ -62,8 +62,6 @@ function pageAge(){
     }
     */
     var age = moment.duration(today.diff(lastAuthored));
-    
-    console.assert(lastAuthored != today, "Authored date could not be found");
 
     return age;
 }
