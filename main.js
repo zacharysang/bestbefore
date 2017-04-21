@@ -49,6 +49,15 @@ function pageAge(){
         * last-updated
         * 
      */
+        
+     /* This code needs reworking. need to handle case where we get multiple dates. 
+        Also need to handle dates existing in multiple sources
+        
+     var dateClassEls = document.querySelectorAll('[class*="date"]');
+     dateClassEls.forEach(function(el){
+        lastAuthored = moment(el.innerHTML);
+     });
+     */
     
     //check URL for hints of last publish date
     /*var yyyymmRes = yyyymm.exec(document.baseURI);
