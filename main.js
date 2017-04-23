@@ -30,6 +30,7 @@ const style = document.createElement('style');
     }
     `
 
+// Get configuration
 chrome.storage.sync.get('oldAge', function (result) {
     var configAge = result.oldAge || 12;
     var oldAge = moment.duration(parseInt(configAge), 'months');
@@ -53,8 +54,9 @@ function displayWarning() {
         ev.target.setAttribute('class', 'best_before_hidden');
     })
 
-    //check if shadow dom available, and if so, put it there
+    //check if shadow dom available, and if so, append it there
     if (document.body.createShadowRoot || document.body.attachShadow) {
+
         var shadContainer = document.createElement('div');
         document.body.insertBefore(shadContainer,document.body.firstChild);
 
@@ -63,9 +65,12 @@ function displayWarning() {
         });
         shadRoot.appendChild(style);
         shadRoot.appendChild(warning);
+
     } else {
+
         document.head.appendChild(style);
         document.body.insertBefore(warning, document.body.firstChild);
+        
     }
 
 }
