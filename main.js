@@ -34,18 +34,20 @@ const style = document.createElement('style');
 chrome.storage.sync.get('oldAge', function (result) {
     var configAge = result.oldAge || 12;
     var oldAge = moment.duration(parseInt(configAge), 'months');
-    if (pageAge() > oldAge) {
-        displayWarning();
+    var age = pageAge();
+    if (age > oldAge) {
+        displayWarning(age);
     }
 });
 
 
-function displayWarning() {
+function displayWarning(age) {
     var warning = document.createElement("div");
     warning.setAttribute('id', 'best_before_warning');
 
     var warningText = document.createTextNode("This page might be old");
     warning.appendChild(warningText);
+    warning.setAttribute('title',`This page is ${Math.floor(age.years())} years and ${Math.floor(age.months())} months old`);
 
     warning.addEventListener('click', function (ev) {
         ev.target.addEventListener('transitionend', function () {
